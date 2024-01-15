@@ -1,36 +1,36 @@
 ---
 # tasks file for rsync-server
 
-- name: rsyncd | install rsync
+- name: Rsyncd | install rsync
   become: true
   ansible.builtin.dnf:
     pkg: rsync
     state: present
 
-- name: rsyncd | create log directory
+- name: Rsyncd | create log directory
   become: true
-  file:
+  ansible.builtin.file:
     path: /var/log/rsyncd
     state: directory
     mode: 0755
 
-- name: rsyncd | configure shares
+- name: Rsyncd | configure shares
   become: true
-  template:
+  ansible.builtin.template:
     dest: /etc/rsyncd.conf
     src: etc-rsyncd.conf.j2
     mode: 0644
     # No need to reload, file is re-read on each client connection.
 
-- name: rsyncd | configure logrotate
+- name: Rsyncd | configure logrotate
   become: true
-  template:
+  ansible.builtin.template:
     backup: false
     dest: /etc/logrotate.d/rsyncd
     src: etc-logrotate.d-rsyncd.j2
     mode: 0644
 
-#- name: rsyncd | selinux allow network connect
+# - name: Rsyncd | selinux allow network connect
 #  become: true
 #  seboolean:
 #    name: rsync_export_all_ro
@@ -38,9 +38,9 @@
 #    persistent: true
 #   when: selinux_enabled
 
-- name: rsyncd | start and enable service
+- name: Rsyncd | start and enable service
   become: true
-  service:
+  ansible.builtin.service:
     name: rsyncd
     enabled: true
     state: started
