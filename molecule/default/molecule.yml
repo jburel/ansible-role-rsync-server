@@ -10,6 +10,7 @@ lint: |
 platforms:
   - name: rsync-server
     image: eniocarboni/docker-rockylinux-systemd:9
+    image_version: latest
     privileged: true
     command: /sbin/init
     cgroupns_mode: host
