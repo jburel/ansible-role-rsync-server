@@ -36,7 +36,7 @@
     name: rsync_export_all_ro
     state: true
     persistent: true
-  when: selinux_enabled
+  # when: selinux_enabled
 
 - name: rsyncd | start and enable service
   become: true
