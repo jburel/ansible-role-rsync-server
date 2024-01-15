@@ -3,7 +3,7 @@
 
 - name: rsyncd | install rsync
   become: true
-  yum:
+  ansible.builtin.dnf:
     pkg: rsync
     state: present
 
