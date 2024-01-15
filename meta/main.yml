@@ -12,7 +12,3 @@ galaxy_info:
   namespace: ome
   role_name: rsync_server
   galaxy_tags: []
-
-dependencies:
-  - role: ome.logrotate
-  - role: ome.selinux_utils
