@@ -9,9 +9,14 @@ lint: |
     flake8
 platforms:
   - name: rsync-server
-    image: centos/systemd:latest
+    image: eniocarboni/docker-rockylinux-systemd:9
     privileged: true
     command: /sbin/init
+    cgroupns_mode: host
+    tmpfs:
+      - /sys/fs/cgroup
+    groups:
+      - extra_options
 provisioner:
   name: ansible
   lint:
